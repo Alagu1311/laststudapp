@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import studentdata from './Student';
+import {Routes,Route} from 'react-router-dom';
+import Maincomp from './Maincomp';
+import Base from './Base';
+import Addstud from './Addstud';
+
 
 function App() {
+  const [student,setstudent]=useState(studentdata)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route exact path='/' element={<Base/>}/>
+        <Route path='/Maincomp' element={<Maincomp
+          student={student}
+          setstudent={setstudent} />}/>
+        <Route path='/Addstud' element={<Addstud/>}/>
+      </Routes>
+     
     </div>
   );
 }
